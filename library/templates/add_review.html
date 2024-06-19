@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Review{% endblock %}
+
+{% block content %}
+<h1 class="my-4">Add Review for {{ book.title }}</h1>
+<form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        {{ form.review_text.label_tag }}
+        {{ form.review_text }}
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{% endblock %}

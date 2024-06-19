@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ book.title }}{% endblock %}
+
+{% block content %}
+<h1 class="my-4">{{ book.title }}</h1>
+<p><strong>Author:</strong> {{ book.author }}</p>
+<p>{{ book.description }}</p>
+<p><strong>Published:</strong> {{ book.published_date }}</p>
+{% if book.cover_image %}
+    <img src="{{ book.cover_image.url }}" class="img-fluid" alt="Cover image of {{ book.title }}">
+{% endif %}
+<h2 class="mt-4">Reviews</h2>
+<ul class="list-group mb-4">
+    {% for review in reviews %}
+        <li class="list-group-item">
+            <p>{{ review.review_text }}</p>
+            <small class="text-muted">- {{ review.user.username }} on {{ review.created_at }}</small>
+        </li>
+    {% endfor %}
+</ul>
+<a href="{% url 'add_review' book.id %}" class="btn btn-primary">Add Review</a>
+{% endblock %}
